@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Income Classifier</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Travel Income Classifier</h1>
+      <p>Predict a customer's income category based on travel preferences</p>
+
+      <form id="prediction-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="Age">Age:</label>
+            <input
+              type="number"
+              id="Age"
+              name="Age"
+              min="18"
+              max="100"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="Gender">Gender:</label>
+            <select id="Gender" name="Gender" required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="MaritalStatus">Marital Status:</label>
+            <select id="MaritalStatus" name="MaritalStatus" required>
+              <option value="">Select Status</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Divorced">Divorced</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Occupation">Occupation:</label>
+            <select id="Occupation" name="Occupation" required>
+              <option value="">Select Occupation</option>
+              <option value="Salaried">Salaried</option>
+              <option value="Business">Business</option>
+              <option value="Student">Student</option>
+              <option value="Retired">Retired</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="Designation">Designation:</label>
+            <select id="Designation" name="Designation" required>
+              <option value="">Select Designation</option>
+              <option value="Executive">Executive</option>
+              <option value="Manager">Manager</option>
+              <option value="Senior Manager">Senior Manager</option>
+              <option value="AVP">AVP</option>
+              <option value="VP">VP</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="City">City:</label>
+            <input type="text" id="City" name="City" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="CityTier">City Tier:</label>
+            <select id="CityTier" name="CityTier" required>
+              <option value="">Select Tier</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="DurationOfPitch">Duration of Pitch (minutes):</label>
+            <input
+              type="number"
+              id="DurationOfPitch"
+              name="DurationOfPitch"
+              step="0.1"
+              min="0"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="NumberOfTrips">Number of Trips:</label>
+            <input
+              type="number"
+              id="NumberOfTrips"
+              name="NumberOfTrips"
+              min="0"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="PreferredPropertyStar">Preferred Property Star:</label>
+            <select
+              id="PreferredPropertyStar"
+              name="PreferredPropertyStar"
+              required
+            >
+              <option value="">Select Star Rating</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="NumberOfPersonVisiting"
+              >Number of People Visiting:</label
+            >
+            <input
+              type="number"
+              id="NumberOfPersonVisiting"
+              name="NumberOfPersonVisiting"
+              min="1"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="NumberOfChildrenVisiting"
+              >Number of Children Visiting:</label
+            >
+            <input
+              type="number"
+              id="NumberOfChildrenVisiting"
+              name="NumberOfChildrenVisiting"
+              min="0"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="OwnCar">Owns Car:</label>
+            <select id="OwnCar" name="OwnCar" required>
+              <option value="">Select</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Passport">Has Passport:</label>
+            <select id="Passport" name="Passport" required>
+              <option value="">Select</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="PitchSatisfactionScore"
+              >Pitch Satisfaction Score (1-5):</label
+            >
+            <select
+              id="PitchSatisfactionScore"
+              name="PitchSatisfactionScore"
+              required
+            >
+              <option value="">Select Score</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="NumberOfFollowups">Number of Followups:</label>
+            <input
+              type="number"
+              id="NumberOfFollowups"
+              name="NumberOfFollowups"
+              min="0"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="TypeofContact">Type of Contact:</label>
+            <select id="TypeofContact" name="TypeofContact" required>
+              <option value="">Select Contact Type</option>
+              <option value="Self Enquiry">Self Enquiry</option>
+              <option value="Company Invited">Company Invited</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ProductPitched">Product Pitched:</label>
+            <select id="ProductPitched" name="ProductPitched" required>
+              <option value="">Select Product</option>
+              <option value="Basic">Basic</option>
+              <option value="Deluxe">Deluxe</option>
+              <option value="Standard">Standard</option>
+              <option value="Super Deluxe">Super Deluxe</option>
+              <option value="King">King</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="ProdTaken">Product Taken (0=No, 1=Yes):</label>
+          <select id="ProdTaken" name="ProdTaken" required>
+            <option value="">Select</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+
+        <button type="submit">Predict Income</button>
+      </form>
+
+      <div id="result" class="hidden">
+        <h2>Prediction Result</h2>
+        <p>Income Category: <span id="prediction"></span></p>
+        <p>Confidence: <span id="probability"></span>%</p>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("prediction-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const form = e.target;
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+
+          try {
+            const response = await fetch("/predict", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: new URLSearchParams(data).toString(),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+              document.getElementById("prediction").textContent =
+                result.prediction;
+              document.getElementById("probability").textContent =
+                result.probability;
+              document.getElementById("result").classList.remove("hidden");
+            } else {
+              alert(`Error: ${result.error}`);
+            }
+          } catch (error) {
+            alert(`An error occurred: ${error.message}`);
+          }
+        });
+    </script>
+  </body>
+</html>
